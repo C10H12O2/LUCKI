@@ -21,3 +21,16 @@ ma = Marshmallow(app)
 jwt = JWTManager(app)
 CORS(app)
 
+#Registering the routes
+from backend.routes.auth import auth_bp
+from backend.routes.profile import profile_bp
+
+app.register_blueprint(auth_bp, url_prefix='/api/auth')
+app.register_blueprint(profile_bp, url_prefix='/api/profile')
+
+#Creating the tables
+with app.app_context():
+    db.create_all()
+    
+if __name__ == "__main__":
+    app.run(debug=True)
