@@ -15,7 +15,7 @@ def get_profile(username):
 
 @profile_bp.route("/me", methods = ["GET"])
 @jwt_required()
-def get_my_profile():
+def get_my_profile(): 
     user_id = get_jwt_identity()
     user = User.query.get(user_id)
     return jsonify(user_schema.dump(user)), 200
